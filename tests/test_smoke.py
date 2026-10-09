@@ -6,10 +6,10 @@ from ai_testing.schemas import CapitalAnswer
 
 
 @pytest.mark.llm
-def test_model_returns_valid_structured_answer(record):
+def test_model_returns_valid_structured_answer(record, model):
     prompt = "What is the capital of France?"
     expected = CapitalAnswer(country="France", capital="Paris")
-    agent = build_agent(CapitalAnswer, instructions="You are a concise geography assistant.")
+    agent = build_agent(CapitalAnswer, instructions="You are a concise geography assistant.", cfg=settings.with_model(model))
 
     result = agent.run_sync(prompt)
 
@@ -18,7 +18,7 @@ def test_model_returns_valid_structured_answer(record):
         input=prompt,
         expected=expected,
         actual=result.output,
-        model=settings.model_name,
+        model=model,
         temperature=settings.temperature,
         tokens=f"{usage.input_tokens} in / {usage.output_tokens} out",
         requests=usage.requests,

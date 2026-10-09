@@ -2,14 +2,12 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-EntityType = Literal[
-    "PERSON", "EMAIL", "PHONE", "ADDRESS", "GOVERNMENT_ID", "FINANCIAL",
-    "DATE_OF_BIRTH", "CREDENTIAL", "IP_ADDRESS", "ORGANIZATION", "CONFIDENTIAL",
-]  # fmt: skip
+# The categories in DETECTION_INSTRUCTIONS (src/ai_testing/masking.py).
+EntityType = Literal["PERSON", "EMAIL", "PHONE", "ADDRESS", "GOV_ID", "CREDENTIAL", "IP", "DOB"]
 
 
 class Entity(BaseModel):
-    """One sensitive value found in a prompt (docs/requirement.md 5.2)."""
+    """One sensitive value found in a prompt."""
 
     type: EntityType = Field(description="The kind of sensitive data")
     value: str = Field(description="The value copied exactly as it appears in the message")

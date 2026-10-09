@@ -1,12 +1,13 @@
 # ai-testing
 
-Boilerplate for testing a local LLM (Ollama, `qwen2.5:3b`) with Pydantic AI + pytest.
+Boilerplate for testing a local LLM (Ollama, Distil-PII Llama 3.2 3B) with Pydantic AI + pytest.
 
 ## Setup (WSL / Linux)
 
 ```bash
 ollama serve &                 # if not already running
-ollama pull qwen2.5:3b
+ollama pull hf.co/mradermacher/Distil-PII-Llama-3.2-3B-Instruct-GGUF:Q4_K_M
+ollama pull qwen2.5:7b
 python3 -m venv .venv
 .venv/bin/pip install -e ".[dev]"
 cp .env.example .env           # optional: change model / URL
@@ -22,6 +23,17 @@ cp .env.example .env           # optional: change model / URL
 ```
 
 Tests marked `@pytest.mark.llm` are skipped automatically if Ollama is down or the model isn't pulled.
+
+### Comparing models
+
+A test that takes a `model` argument runs once per model in `MODEL_NAMES` (default `["hf.co/mradermacher/Distil-PII-Llama-3.2-3B-Instruct-GGUF:Q4_K_M", "qwen2.5:7b"]`), so one run checks every model. Models that aren't pulled are skipped.
+
+```bash
+MODEL_NAMES='["hf.co/mradermacher/Distil-PII-Llama-3.2-3B-Instruct-GGUF:Q4_K_M"]' .venv/bin/pytest tests/test_masking.py   # just one model
+.venv/bin/pytest tests/test_masking.py -k "Distil-PII"   # same, using the test ids
+```
+
+The report has a **Model** dropdown in the summary that shows one model's rows, with its passed/failed counts.
 
 ## HTML report
 

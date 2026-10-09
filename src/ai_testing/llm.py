@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-from pydantic_ai import Agent, NativeOutput
+from pydantic_ai import Agent, NativeOutput, TextOutput
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.ollama import OllamaProvider
 from pydantic_ai.settings import ModelSettings
@@ -16,15 +16,18 @@ def build_model(cfg: Settings = default_settings) -> OpenAIChatModel:
 
 
 def build_agent(
-    output_type: type[T],
+    output_type: type[T] | TextOutput[T],
     instructions: str,
     cfg: Settings = default_settings,
 ) -> Agent[None, T]:
-    """Agent whose replies are validated against output_type (a Pydantic model)."""
+    """Agent whose replies are validated against output_type (a Pydantic model).
+
+    A TextOutput is passed through unchanged, for models fine-tuned on their own reply format.
+    """
     return Agent(
         build_model(cfg),
         # Tool-call output is unreliable on small Ollama models (empty replies); use JSON-schema mode.
-        output_type=NativeOutput(output_type),
+        output_type=NativeOutput(output_type) if isinstance(output_type, type) else output_type,
         instructions=instructions,
         model_settings=ModelSettings(temperature=cfg.temperature, seed=cfg.seed),
         retries=2,

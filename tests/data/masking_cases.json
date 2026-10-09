@@ -1,0 +1,82 @@
+{
+  "masking_correctness": {
+    "TC-01 Customer support email": {
+      "input": "Draft a polite response to customer Maria Santos, who emailed maria.santos@example.com and called +63 917 555 0142. Her delivery address is 18 Sampaguita Street, Barangay Malinis, Quezon City 1100. She says the parcel arrived damaged and wants a replacement. Keep the tone apologetic and ask her to attach a photo of the damaged item.",
+      "expected": "Draft a polite response to customer [PERSON_1], who emailed [EMAIL_1] and called [PHONE_1]. Her delivery address is [ADDRESS_1]. She says the parcel arrived damaged and wants a replacement. Keep the tone apologetic and ask her to attach a photo of the damaged item."
+    },
+    "TC-02 Employee onboarding": {
+      "input": "Prepare an onboarding checklist for Daniel Reyes, born on 14 February 1994. His passport number is P1234567 and his tax identification number is 123-456-789-000. Send the checklist to daniel.reyes@example.com and remind him to submit his signed forms to the HR office. Do not include his identifiers in the checklist itself.",
+      "expected": "Prepare an onboarding checklist for [PERSON_1], born on [DOB_1]. His passport number is [GOV_ID_1] and his tax identification number is [GOV_ID_2]. Send the checklist to [EMAIL_1] and remind him to submit his signed forms to the HR office. Do not include his identifiers in the checklist itself."
+    },
+    "TC-03 Invoice and payment follow-up": {
+      "input": "Write a payment reminder for Northstar Office Supplies, our customer. The invoice is for PHP 48,750 and should be paid to account number 001234567890 at Example Bank, routing number 021000021. The company contact is Angela Cruz at angela.cruz@example.com, phone 02 8555 0198. Keep the tone professional and do not sound threatening.",
+      "expected": "Write a payment reminder for Northstar Office Supplies, our customer. The invoice is for PHP 48,750 and should be paid to account number 001234567890 at Example Bank, routing number 021000021. The company contact is [PERSON_1] at [EMAIL_1], phone [PHONE_1]. Keep the tone professional and do not sound threatening."
+    },
+    "TC-04 Developer debugging": {
+      "input": "Help me debug a staging deployment. The admin password is BlueRiver!Example-42 and the API key is sk_test_FAKE_7H3K9Q2M5N8P. The service runs at 10.24.8.19 and connects using postgresql://app_user:FakePass_908@db.internal.example:5432/customerdb. The deployment is failing after the last configuration change. Suggest safe debugging steps without repeating the secrets.",
+      "expected": "Help me debug a staging deployment. The admin password is [CREDENTIAL_1] and the API key is [CREDENTIAL_2]. The service runs at [IP_1] and connects using [CREDENTIAL_3]. The deployment is failing after the last configuration change. Suggest safe debugging steps without repeating the secrets."
+    },
+    "TC-05 School registration": {
+      "input": "Create a reminder for parent Roberto Lim, whose child is registered at 72 Mabini Avenue, Cebu City 6000. Roberto's phone is +63 905 222 0184 and email is roberto.lim@example.org. The school needs the child's birth date, 03/09/2017, to complete enrollment. Make the reminder friendly and list the documents to bring.",
+      "expected": "Create a reminder for parent [PERSON_1], whose child is registered at [ADDRESS_1]. [PERSON_1]'s phone is [PHONE_1] and email is [EMAIL_1]. The school needs the child's birth date, [DOB_1], to complete enrollment. Make the reminder friendly and list the documents to bring."
+    },
+    "TC-06 Confidential product launch": {
+      "input": "Help me write a project update for the leadership team. Our unreleased product codename is Project Moon Orchid, and the internal dashboard is https://moon-orchid.corp.example/forecast. The draft launch budget is PHP 18.6 million, which must not be disclosed externally. The partner company is Silver Pine Analytics. Summarize milestones, risks, and next steps without exposing internal-only details.",
+      "expected": "Help me write a project update for the leadership team. Our unreleased product codename is Project Moon Orchid, and the internal dashboard is https://moon-orchid.corp.example/forecast. The draft launch budget is PHP 18.6 million, which must not be disclosed externally. The partner company is Silver Pine Analytics. Summarize milestones, risks, and next steps without exposing internal-only details."
+    },
+    "TC-07 Customer complaint and card details": {
+      "input": "Draft a case summary for our support team. Customer Nina Villanueva, nina.v@example.net, called +63 917 444 7721 about order 583901. Her billing address is 44 Narra Road, Davao City 8000. She says a charge of PHP 12,499 was taken from her credit card 4111 1111 1111 1111 on 21 August 2026. The card number is test data. Ask the team to investigate and contact her securely.",
+      "expected": "Draft a case summary for our support team. Customer [PERSON_1], [EMAIL_1], called [PHONE_1] about order 583901. Her billing address is [ADDRESS_1]. She says a charge of PHP 12,499 was taken from her credit card 4111 1111 1111 1111 on 21 August 2026. The card number is test data. Ask the team to investigate and contact her securely."
+    },
+    "TC-08 Repeated values in a CRM note": {
+      "input": "Prepare a short CRM note for Alex Dela Cruz. Alex can be reached at alex.dc@example.com or +63 (917) 555-0188. Please mention Alex's email again in the follow-up instructions: alex.dc@example.com. The contact address is Unit 5, 20 Rizal Street, Pasig 1600. Keep the note concise and professional.",
+      "expected": "Prepare a short CRM note for [PERSON_1]. [PERSON_1] can be reached at [EMAIL_1] or [PHONE_1]. Please mention [PERSON_1]'s email again in the follow-up instructions: [EMAIL_1]. The contact address is [ADDRESS_1]. Keep the note concise and professional."
+    },
+    "TC-09 Multiple government identifiers": {
+      "input": "Summarize this fictional client intake for an internal checklist: Patricia Gomez submitted passport number XG7654321, driver's licence number D123-456-789-012, and tax ID 987-654-321-000. Her date of birth is 1988-11-23. The client asked whether the required documents have been received. Do not include any of the identifier values in the summary.",
+      "expected": "Summarize this fictional client intake for an internal checklist: [PERSON_1] submitted passport number [GOV_ID_1], driver's licence number [GOV_ID_2], and tax ID [GOV_ID_3]. Her date of birth is [DOB_1]. The client asked whether the required documents have been received. Do not include any of the identifier values in the summary."
+    },
+    "TC-10 Internal infrastructure incident": {
+      "input": "Write an incident report for the platform team. The affected host is payroll-db-07.corp.example, its IPv6 address is 2001:db8:85a3::8a2e:370:7334, and the service uses the connection string mysql://payroll_app:ExampleOnly!92@payroll-db-07.corp.example:3306/payroll. The incident began after a database migration. Describe containment and recovery steps without including internal infrastructure details or credentials.",
+      "expected": "Write an incident report for the platform team. The affected host is payroll-db-07.corp.example, its IPv6 address is [IP_1], and the service uses the connection string [CREDENTIAL_1]. The incident began after a database migration. Describe containment and recovery steps without including internal infrastructure details or credentials."
+    },
+    "TC-11 Confidential business planning": {
+      "input": "Help prepare a public-facing company update. We signed a pilot with Harborlight Retail Group, but the contract value of PHP 7,850,000 is confidential until the announcement. The internal initiative name is Project Cedar Lantern. Please describe the partnership in general terms and avoid revealing the amount or the internal codename.",
+      "expected": "Help prepare a public-facing company update. We signed a pilot with Harborlight Retail Group, but the contract value of PHP 7,850,000 is confidential until the announcement. The internal initiative name is Project Cedar Lantern. Please describe the partnership in general terms and avoid revealing the amount or the internal codename."
+    },
+    "TC-12 Email and phone with varied formatting": {
+      "input": "Please contact Michael Tan at MICHAEL.TAN@example.com or +63 (917) 555-0123. His alternate number is 09175550124. Send the documents to 25 Roxas Boulevard, Pasay City, Metro Manila 1300.",
+      "expected": "Please contact [PERSON_1] at [EMAIL_1] or [PHONE_1]. His alternate number is [PHONE_2]. Send the documents to [ADDRESS_1]."
+    },
+    "TC-13 Application error log": {
+      "input": "ERROR 500: Failed to process customer request Customer: Maria Santos Email: maria.santos@company.com Account Number: 8392014756 Transaction ID: TXN-2026-10482 Timestamp: 2026-10-09 14:32:18 Exception: NullReferenceException in PaymentService.cs, line 142",
+      "expected": "ERROR 500: Failed to process customer request Customer: Maria Santos Email: maria.santos@company.com Account Number: 8392014756 Transaction ID: TXN-2026-10482 Timestamp: 2026-10-09 14:32:18 Exception: NullReferenceException in PaymentService.cs, line 142"
+    }
+  },
+  "non_pii_untouched": {
+    "KEEP-01 General city reference": {
+      "input": "i live in pasay city philippines",
+      "expected": "i live in pasay city philippines"
+    },
+    "KEEP-02 Generic sensitive-data discussion": {
+      "input": "Explain why people should protect their passwords, email addresses, phone numbers, and confidential business information.",
+      "expected": "Explain why people should protect their passwords, email addresses, phone numbers, and confidential business information."
+    },
+    "KEEP-03 Ordinary date and financial amount": {
+      "input": "The project deadline is October 31, 2026, and the budget is PHP 15000 with a 7.5% contingency.",
+      "expected": "The project deadline is October 31, 2026, and the budget is PHP 15000 with a 7.5% contingency."
+    },
+    "KEEP-04 Generic technical documentation": {
+      "input": "The application runs on version 10.2.4.1 and connects to a test server on port 5432.",
+      "expected": "The application runs on version 10.2.4.1 and connects to a test server on port 5432."
+    },
+    "KEEP-05 Ordinary organization references": {
+      "input": "We use Slack, Jira, and Google Drive to manage our project tasks.",
+      "expected": "We use Slack, Jira, and Google Drive to manage our project tasks."
+    },
+    "KEEP-06 Placeholder preservation": {
+      "input": "The example report contains [PERSON_1] and [EMAIL_1] as demonstration placeholders.",
+      "expected": "The example report contains [PERSON_1] and [EMAIL_1] as demonstration placeholders."
+    }
+  }
+}

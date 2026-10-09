@@ -47,7 +47,8 @@
   color: #000;
 }
 
-.test-files {
+.test-files,
+.model-filter {
   font-size: 13px;
 }
 

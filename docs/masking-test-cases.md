@@ -12,6 +12,21 @@ The automated cases are in [tests/test_masking.py](../tests/test_masking.py). Ea
 
 The model only does step 1. Steps 2 and 3 are deterministic code.
 
+Distil-PII models are fine-tuned on their own prompt and reply format, so they get the prompt from their model card (`DISTIL_SYSTEM_PROMPT`), and their tokens are mapped to the 5.2 types. Distil-PII has no tokens for credentials, IP addresses, dates of birth, organizations or confidential data, so it cannot pass those cases.
+
+## Data-driven cases (tests/data/masking_cases.json)
+
+- `OUT-nn` cases pass when every value the expected text replaces is gone, each expected placeholder type appears, no other type appears, and the rest of the text is kept (TC-LLM-02). Numbering and exact span boundaries are not compared.
+- `KEEP-nn` cases must come back exactly as sent.
+- `"exact": true` compares the whole string; `"xfail": "<reason>"` marks a known limit.
+
+Policy decisions behind the expected values:
+
+- A city, region or country on its own is not an address; street, block, lot or unit level is.
+- Obvious sample values (`user@example.com`, `your-api-key-here`) are not masked.
+- A connection string is one `CREDENTIAL`; an IP address is masked without its port; a phone extension is part of the phone number; a CVV is `FINANCIAL`.
+- Case variants of a value (`JOHN.SMITH@ACME.COM` and `john.smith@acme.com`) get separate placeholders. This is a known limit.
+
 ## Running
 
 ```bash
