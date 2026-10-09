@@ -1,0 +1,24 @@
+[project]
+name = "ai-testing"
+version = "0.1.0"
+description = "Boilerplate for testing local LLM outputs (Ollama) with Pydantic AI + pytest"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic-ai-slim[openai]>=2.54",
+    "pydantic-settings>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-html>=4"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --self-contained-html"
+markers = ["llm: test calls the real local LLM via Ollama"]
