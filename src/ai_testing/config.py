@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434/v1"
     model_name: str = "qwen2.5:3b"
     temperature: float = 0.0
+    # temperature 0 alone is not fully repeatable on Ollama; a fixed seed reduces the variation.
+    seed: int = 42
 
 
 settings = Settings()

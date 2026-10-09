@@ -22,3 +22,4 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-ra --self-contained-html"
 markers = ["llm: test calls the real local LLM via Ollama"]
+render_collapsed = "passed,xpassed"

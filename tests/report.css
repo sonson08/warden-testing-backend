@@ -1,0 +1,57 @@
+/* Appended to pytest-html's default stylesheet by conftest.py. */
+
+#results-table {
+  table-layout: fixed;
+}
+
+#results-table th,
+#results-table td {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+#results-table td {
+  color: #333;
+}
+
+#results-table pre {
+  margin: 0;
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Result, Test, Input, Expected, Actual, Details, Duration */
+#results-table th:nth-child(1) { width: 8%; }
+#results-table th:nth-child(2) { width: 18%; }
+#results-table th:nth-child(3) { width: 19%; }
+#results-table th:nth-child(4) { width: 16%; }
+#results-table th:nth-child(5) { width: 20%; }
+#results-table th:nth-child(6) { width: 13%; }
+#results-table th:nth-child(7) { width: 6%; }
+
+.passed .col-result::before {
+  content: "\2714\00a0";
+  font-size: 14px;
+  color: green;
+}
+
+.failed .col-result::before,
+.error .col-result::before {
+  content: "\2718\00a0";
+  font-size: 14px;
+  color: red;
+}
+
+.col-name {
+  color: #000;
+}
+
+.test-files {
+  font-size: 13px;
+}
+
+.col-name .params {
+  display: block;
+  color: #999;
+}

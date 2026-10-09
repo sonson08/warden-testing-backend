@@ -26,6 +26,6 @@ def build_agent(
         # Tool-call output is unreliable on small Ollama models (empty replies); use JSON-schema mode.
         output_type=NativeOutput(output_type),
         instructions=instructions,
-        model_settings=ModelSettings(temperature=cfg.temperature),
+        model_settings=ModelSettings(temperature=cfg.temperature, seed=cfg.seed),
         retries=2,
     )
